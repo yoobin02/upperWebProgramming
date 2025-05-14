@@ -2,56 +2,35 @@ package com.example.upperWebProgramming.service;
 
 import com.example.upperWebProgramming.model.Todo;
 import com.example.upperWebProgramming.repository.TodoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j                  // 로깅을 위한 어노테이션
+@RequiredArgsConstructor // final 필드에 대한 생성자 자동 생성
 @Service
 public class TodoService {
 
     private final TodoRepository todoRepository;
 
-    @Autowired
-    public TodoService(TodoRepository todoRepository) {
-        this.todoRepository = todoRepository;
+    // 모든 할 일 조회
+    public List<Todo> findAllTodos() {
+        log.info("모든 할 일 목록을 조회합니다.");
+        return todoRepository.findAllByOrderByCreatedAtDesc();
     }
 
-    public List<Todo> getAllTodos() {
-        return todoRepository.findAllByOrderByPriorityDescDueDateAsc();
-    }
-
-    public Todo getTodoById(Long id) {
+    // ID로 특정 할 일 조회
+    public Todo findTodoById(Long id) {
+        log.info("ID {}에 해당하는 할 일을 조회합니다.", id);
         return todoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Todo not found with id: " + id));
+                .orElseThrow(() -> new IllegalArgumentException("해당 할 일이 존재하지 않습니다. id=" + id));
     }
 
-    public Todo createTodo(Todo todo) {
+    // 할 일 생성
+    public Todo saveTodo(Todo todo) {
+        log.info("새로운 할 일을 저장합니다: {}", todo.getTitle());
         return todoRepository.save(todo);
-    }
-
-    public Todo updateTodo(Long id, Todo todoDetails) {
-        Todo todo = getTodoById(id);
-
-        todo.setTitle(todoDetails.getTitle());
-        todo.setDescription(todoDetails.getDescription());
-        todo.setDueDate(todoDetails.getDueDate());
-        todo.setPriority(todoDetails.getPriority());
-        todo.setCompleted(todoDetails.isCompleted());
-
-        return todoRepository.save(todo);
-    }
-
-    public void deleteTodo(Long id) {
-        Todo todo = getTodoById(id);
-        todoRepository.delete(todo);
-    }
-
-    public List<Todo> getCompletedTodos() {
-        return todoRepository.findByCompletedOrderByDueDateAsc(true);
-    }
-
-    public List<Todo> getActiveTodos() {
-        return todoRepository.findByCompletedOrderByDueDateAsc(false);
     }
 }

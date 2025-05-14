@@ -1,90 +1,127 @@
+/* 기본 스타일 */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
 .container {
-    width: 80%;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
 
-h1 {
-    color: #333;
-    margin-bottom: 20px;
+h1, h2, h3 {
+    color: #444;
 }
 
-.form-group {
-    margin-bottom: 15px;
+a {
+    color: #007bff;
+    text-decoration: none;
 }
 
-.form-control {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+a:hover {
+    text-decoration: underline;
 }
 
-textarea.form-control {
-    height: 100px;
-}
-
+/* 버튼 스타일 */
 .btn {
     display: inline-block;
     padding: 8px 16px;
-    background: #333;
-    color: #fff;
+    background-color: #007bff;
+    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
     font-size: 14px;
+    margin-right: 10px;
 }
 
-.btn-primary {
-    background: #007bff;
+.btn:hover {
+    background-color: #0069d9;
+    text-decoration: none;
 }
 
 .btn-secondary {
-    background: #6c757d;
+    background-color: #6c757d;
 }
 
-.btn-info {
-    background: #17a2b8;
+.btn-secondary:hover {
+    background-color: #5a6268;
 }
 
-.btn-sm {
-    padding: 4px 8px;
-    font-size: 12px;
+/* 폼 스타일 */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-actions {
+    margin-top: 30px;
+}
+
+/* 할 일 목록 스타일 */
+.todo-list {
+    margin-top: 20px;
+}
+
+.todo-item {
+    background: white;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.todo-item h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 
 .actions {
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+/* 할 일 상세 스타일 */
+.todo-detail {
+    background: white;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-table th, table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
+.detail-item {
+    margin-bottom: 15px;
 }
 
-table th {
-    background-color: #f4f4f4;
+.detail-item strong {
+    font-weight: bold;
 }
 
+/* 빈 상태 스타일 */
 .empty-state {
     text-align: center;
     padding: 40px;
-    background: #fff;
+    background: white;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
 }

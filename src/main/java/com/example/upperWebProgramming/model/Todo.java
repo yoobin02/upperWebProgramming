@@ -1,8 +1,18 @@
 package com.example.upperWebProgramming.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+@Data                   // Getter, Setter, toString, equals, hashCode 자동 생성
+@NoArgsConstructor      // 기본 생성자
+@AllArgsConstructor     // 모든 필드 포함 생성자
+@Builder                // 빌더 패턴 지원
 @Entity
 @Table(name = "todos")
 public class Todo {
@@ -16,6 +26,7 @@ public class Todo {
 
     private String description;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime dueDate;
 
     private boolean completed = false;
@@ -25,83 +36,8 @@ public class Todo {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    private LocalDateTime updatedAt;
-
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
-
-    // 생성자
-    public Todo() {}
-
-    public Todo(String title, String description, LocalDateTime dueDate, int priority) {
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
-    }
-
-    // Getter와 Setter 메소드
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDateTime dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
     }
 }

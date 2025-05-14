@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>할 일 목록</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>할 일 목록</h1>
+
+    <div class="actions">
+        <a href="/todos/new" class="btn">새 할 일 추가</a>
+    </div>
+
+    <div class="todo-list">
+        {{#todos}}
+            <div class="todo-item">
+                <h3><a href="/todos/{{id}}">{{title}}</a></h3>
+                <p>우선순위: {{priority}}</p>
+                {{#dueDate}}
+                    <p>마감일: {{dueDate}}</p>
+                {{/dueDate}}
+                <p>상태: {{#completed}}완료{{/completed}}{{^completed}}진행 중{{/completed}}</p>
+            </div>
+        {{/todos}}
+
+        {{^todos}}
+            <div class="empty-state">
+                <p>등록된 할 일이 없습니다. 새로운 할 일을 추가해보세요!</p>
+            </div>
+        {{/todos}}
+    </div>
+</div>
+</body>
+</html>

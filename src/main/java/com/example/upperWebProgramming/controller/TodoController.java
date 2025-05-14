@@ -2,44 +2,53 @@ package com.example.upperWebProgramming.controller;
 
 import com.example.upperWebProgramming.model.Todo;
 import com.example.upperWebProgramming.service.TodoService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
+@RequiredArgsConstructor
 @Controller
-@RequestMapping("/todos")
 public class TodoController {
 
     private final TodoService todoService;
 
-    @Autowired
-    public TodoController(TodoService todoService) {
-        this.todoService = todoService;
-    }
-
-    @GetMapping
-    public String getAllTodos(Model model) {
-        model.addAttribute("todos", todoService.getAllTodos());
-        model.addAttribute("newTodo", new Todo());
-        return "todos/list";
-    }
-
-    @GetMapping("/new")
-    public String showCreateForm(Model model) {
-        model.addAttribute("todo", new Todo());
-        return "todos/create";
-    }
-
-    @PostMapping
-    public String createTodo(@ModelAttribute Todo todo) {
-        todoService.createTodo(todo);
+    // 메인 페이지 (리다이렉트)
+    @GetMapping("/")
+    public String home() {
         return "redirect:/todos";
     }
 
-    @GetMapping("/{id}")
-    public String showTodoDetails(@PathVariable Long id, Model model) {
-        model.addAttribute("todo", todoService.getTodoById(id));
-        return "todos/detail";
+    // 할 일 목록 조회
+    @GetMapping("/todos")
+    public String getTodos(Model model) {
+        log.info("할 일 목록 페이지를 조회합니다.");
+        model.addAttribute("todos", todoService.findAllTodos());
+        return "todo/list";
+    }
+
+    // 할 일 생성 폼
+    @GetMapping("/todos/new")
+    public String createTodoForm() {
+        log.info("할 일 생성 폼을 표시합니다.");
+        return "todo/create";
+    }
+
+    // 할 일 생성 처리
+    @PostMapping("/todos")
+    public String createTodo(Todo todo) {
+        log.info("새로운 할 일을 생성합니다: {}", todo);
+        todoService.saveTodo(todo);
+        return "redirect:/todos";
+    }
+
+    // 할 일 상세 조회
+    @GetMapping("/todos/{id}")
+    public String getTodoDetails(@PathVariable Long id, Model model) {
+        log.info("할 일 상세 정보를 조회합니다. id: {}", id);
+        model.addAttribute("todo", todoService.findTodoById(id));
+        return "todo/detail";
     }
 }

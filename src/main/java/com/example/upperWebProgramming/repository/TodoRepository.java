@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Long> {
-    List<Todo> findByCompletedOrderByDueDateAsc(boolean completed);
-    List<Todo> findAllByOrderByPriorityDescDueDateAsc();
+    List<Todo> findAllByOrderByCreatedAtDesc(); // 최신순으로 정렬
 }

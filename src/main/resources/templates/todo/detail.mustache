@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>할 일 상세</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>할 일 상세 정보</h1>
+
+    <div class="todo-detail">
+        <h2>{{todo.title}}</h2>
+
+        <div class="detail-item">
+            <strong>설명:</strong>
+            <p>{{todo.description}}</p>
+        </div>
+
+        {{#todo.dueDate}}
+            <div class="detail-item">
+                <strong>마감일:</strong>
+                <p>{{todo.dueDate}}</p>
+            </div>
+        {{/todo.dueDate}}
+
+        <div class="detail-item">
+            <strong>우선순위:</strong>
+            <p>{{todo.priority}}</p>
+        </div>
+
+        <div class="detail-item">
+            <strong>상태:</strong>
+            <p>{{#todo.completed}}완료{{/todo.completed}}{{^todo.completed}}진행 중{{/todo.completed}}</p>
+        </div>
+
+        <div class="detail-item">
+            <strong>생성일:</strong>
+            <p>{{todo.createdAt}}</p>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="/todos" class="btn">목록으로 돌아가기</a>
+    </div>
+</div>
+</body>
+</html>
