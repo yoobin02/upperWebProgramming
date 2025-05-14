@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
+
 @Slf4j
 @RequiredArgsConstructor
 @Controller
@@ -48,7 +50,12 @@ public class TodoController {
     @GetMapping("/todos/{id}")
     public String getTodoDetails(@PathVariable Long id, Model model) {
         log.info("할 일 상세 정보를 조회합니다. id: {}", id);
-        model.addAttribute("todo", todoService.findTodoById(id));
+        Todo todo = todoService.findTodoById(id);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedCreatedAt = todo.getCreatedAt().format(formatter);
+
+        model.addAttribute("todo", todo);
+        model.addAttribute("formattedCreatedAt", formattedCreatedAt);
         return "todo/detail";
     }
 }
