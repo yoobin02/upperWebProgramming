@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>할 일 목록</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <h1>할 일 목록</h1>
+
+    <div class="actions">
+        <a th:href="@{/todos/new}" class="btn btn-primary">새 할 일 추가</a>
+    </div>
+
+    <div class="todos-list" th:if="${!todos.empty}">
+        <table>
+            <thead>
+            <tr>
+                <th>제목</th>
+                <th>마감일</th>
+                <th>우선순위</th>
+                <th>상태</th>
+                <th>액션</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="todo : ${todos}">
+                <td th:text="${todo.title}"></td>
+                <td th:text="${todo.dueDate != null ? #temporals.format(todo.dueDate, 'yyyy-MM-dd HH:mm') : '미정'}"></td>
+                <td th:text="${todo.priority}"></td>
+                <td th:text="${todo.completed ? '완료' : '진행 중'}"></td>
+                <td>
+                    <a th:href="@{/todos/{id}(id=${todo.id})}" class="btn btn-sm btn-info">상세</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="empty-state" th:if="${todos.empty}">
+        <p>할 일이 없습니다. 새 할 일을 추가해보세요!</p>
+    </div>
+</div>
+
+<script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>
