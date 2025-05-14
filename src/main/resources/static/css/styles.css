@@ -1,127 +1,54 @@
-/* 기본 스타일 */
+/* 사용자 정의 스타일 */
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: #f8f9fa;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+.card {
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-h1, h2, h3 {
-    color: #444;
+.card-header {
+    border-bottom: none;
 }
 
-a {
-    color: #007bff;
-    text-decoration: none;
+.table th {
+    border-top: none;
 }
 
-a:hover {
-    text-decoration: underline;
+.todo-row:hover {
+    background-color: rgba(0, 123, 255, 0.05);
 }
 
-/* 버튼 스타일 */
+.badge {
+    font-weight: normal;
+    padding: 0.5em 0.8em;
+}
+
+/* 애니메이션 효과 */
 .btn {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 14px;
-    margin-right: 10px;
+    transition: all 0.2s;
 }
 
 .btn:hover {
-    background-color: #0069d9;
-    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.btn-secondary {
-    background-color: #6c757d;
-}
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
+    .card-header {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
 
-/* 폼 스타일 */
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.form-actions {
-    margin-top: 30px;
-}
-
-/* 할 일 목록 스타일 */
-.todo-list {
-    margin-top: 20px;
-}
-
-.todo-item {
-    background: white;
-    border-radius: 4px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.todo-item h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.actions {
-    margin: 20px 0;
-}
-
-/* 할 일 상세 스타일 */
-.todo-detail {
-    background: white;
-    border-radius: 4px;
-    padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.detail-item {
-    margin-bottom: 15px;
-}
-
-.detail-item strong {
-    font-weight: bold;
-}
-
-/* 빈 상태 스타일 */
-.empty-state {
-    text-align: center;
-    padding: 40px;
-    background: white;
-    border-radius: 4px;
-    margin: 20px 0;
+    .card-header .btn {
+        margin-top: 10px;
+    }
 }

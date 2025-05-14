@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data                   // Getter, Setter, toString, equals, hashCode 자동 생성
@@ -26,12 +27,12 @@ public class Todo {
 
     private String description;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private LocalDateTime dueDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dueDate;  // LocalDateTime에서 LocalDate로 변경
 
     private boolean completed = false;
 
-    private int priority = 0;
+    // priority 필드 삭제
 
     @Column(updatable = false)
     private LocalDateTime createdAt;
