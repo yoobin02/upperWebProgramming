@@ -1,14 +1,11 @@
 package com.example.upperWebProgramming.controller;
 
-import com.upperwebprogramming.model.Todo;
-import com.upperwebprogramming.service.TodoService;
+import com.example.upperWebProgramming.model.Todo;
+import com.example.upperWebProgramming.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/todos")

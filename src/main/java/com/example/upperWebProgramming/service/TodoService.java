@@ -1,7 +1,7 @@
 package com.example.upperWebProgramming.service;
 
-import com.upperwebprogramming.model.Todo;
-import com.upperwebprogramming.repository.TodoRepository;
+import com.example.upperWebProgramming.model.Todo;
+import com.example.upperWebProgramming.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -9,5 +9,4 @@ public class UpperWebProgrammingApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UpperWebProgrammingApplication.class, args);
 	}
-
 }
