@@ -5,12 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.cglib.core.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data                   // Getter, Setter, toString, equals, hashCode 자동 생성
 @NoArgsConstructor      // 기본 생성자
@@ -30,7 +28,7 @@ public class Todo {
     private String description;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dueDate;  // LocalDateTime에서 LocalDate로 변경
+    private LocalDate dueDate;
 
 
     private boolean completed;
