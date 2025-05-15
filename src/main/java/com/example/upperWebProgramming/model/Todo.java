@@ -13,8 +13,8 @@ import java.time.LocalDate;
 @Data                   // Getter, Setter, toString, equals, hashCode 자동 생성
 @NoArgsConstructor      // 기본 생성자
 @AllArgsConstructor     // 모든 필드 포함 생성자
-@Builder                // 빌더 패턴 지원
 @Entity
+@Builder
 @Table(name = "todos")
 public class Todo {
 
@@ -30,20 +30,20 @@ public class Todo {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dueDate;
 
-
     private boolean completed;
 
-    // priority 필드 삭제
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDate createdAt;
 
-    @Builder
+    @PrePersist
     public void onCreate() {
-        createdAt = LocalDate.now();
+        if (createdAt == null) {
+            createdAt = LocalDate.now();
+        }
     }
 
-//    public void updateTitle(Strig titleDto){
+//  public void updateTitle(Strig titleDto){
 //       this.tite = titleDto.title
-//    }
+//  }
 }
