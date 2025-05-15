@@ -42,7 +42,7 @@ public class TodoController {
     // 할 일 생성 폼
     @GetMapping("/todos/new")
     public String createTodoForm(Model model) {
-        log.info("할 일 생성 폼을 표시합니다.");
+        //log.info("할 일 생성 폼을 표시합니다.");
 
         LocalDateTime now = LocalDateTime.now();
         String localTime = now.format(formatter);
