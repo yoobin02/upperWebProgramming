@@ -47,6 +47,7 @@ public class TodoDTO {
                 .description(description)
                 .dueDate(dueDate)
                 .completed(completed)
+                .createdAt(createdAt)
                 .build();
     }
 

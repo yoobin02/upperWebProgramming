@@ -4,15 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@Data                   // Getter, Setter, toString, equals, hashCode 자동 생성
-@NoArgsConstructor      // 기본 생성자
-@AllArgsConstructor     // 모든 필드 포함 생성자
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Builder
 @Table(name = "todos")
@@ -32,8 +31,8 @@ public class Todo {
 
     private boolean completed;
 
-    @CreationTimestamp
-    @Column(updatable = false)
+    // @CreationTimestamp 어노테이션 제거하고 updatable=true로 변경
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createdAt;
 
     @PrePersist
