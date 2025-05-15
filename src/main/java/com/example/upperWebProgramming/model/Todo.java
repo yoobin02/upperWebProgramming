@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.cglib.core.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.*;
@@ -30,15 +32,20 @@ public class Todo {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dueDate;  // LocalDateTime에서 LocalDate로 변경
 
-    private boolean completed = false;
+
+    private boolean completed;
 
     // priority 필드 삭제
-
+    @CreationTimestamp
     @Column(updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
+    @Builder
+    public void onCreate() {
+        createdAt = LocalDate.now();
     }
+
+//    public void updateTitle(Strig titleDto){
+//       this.tite = titleDto.title
+//    }
 }

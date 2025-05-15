@@ -42,7 +42,8 @@ public class TodoController {
     @PostMapping("/todos")
     public String createTodo(Todo todo) {
         log.info("새로운 할 일을 생성합니다: {}", todo);
-        todoService.saveTodo(todo);
+        Todo todoInfo = todoService.saveTodo(todo);
+        log.info("저장된 정보: {}", todoInfo);
         return "redirect:/todos";
     }
 
