@@ -69,8 +69,8 @@ public class TodoDTO {
 
         return "TodoDTO(" +
                 "id=" + id +
-                ", title=" + title +
-                ", description=" + description +
+                ", 제목=" + title +
+                ", 설명=" + description +
                 ", 생성일: " + formattedCreatedAt +
                 ", 마감일: " + formattedDueDate +
                 ", 진행도=" + completed +
