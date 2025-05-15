@@ -28,8 +28,8 @@
                             <tr>
                                 <th>제목</th>
                                 <th>설명</th>
-                                <th>마감일</th>
                                 <th>생성일</th>
+                                <th>마감일</th>
                                 <th>상태</th>
                             </tr>
                             </thead>
@@ -38,8 +38,8 @@
                                 <tr class="todo-row" onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">
                                     <td>{{title}}</td>
                                     <td>{{description}}</td>
-                                    <td>{{formattedDueDate}}</td>
                                     <td>{{formattedCreatedAt}}</td>
+                                    <td>{{formattedDueDate}}</td>
                                     <td>
                                         <span class="badge {{#completed}}bg-success{{/completed}}{{^completed}}bg-warning{{/completed}}">
                                             {{#completed}}완료됨{{/completed}}

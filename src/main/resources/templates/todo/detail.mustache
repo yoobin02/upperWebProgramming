@@ -33,17 +33,17 @@
                             </span>
                         </li>
 
+                        <li class="list-group-item d-flex justify-content-between">
+                            <strong>생성일:</strong>
+                            <span>{{todo.formattedCreatedAt}}</span>
+                        </li>
+
                         {{#todo.formattedDueDate}}
                             <li class="list-group-item d-flex justify-content-between">
                                 <strong>마감일:</strong>
                                 <span>{{todo.formattedDueDate}}</span>
                             </li>
                         {{/todo.formattedDueDate}}
-
-                        <li class="list-group-item d-flex justify-content-between">
-                            <strong>생성일:</strong>
-                            <span>{{todo.formattedCreatedAt}}</span>
-                        </li>
                     </ul>
 
                     <div class="d-flex justify-content-between">
