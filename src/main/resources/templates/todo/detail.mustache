@@ -13,12 +13,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow">
-                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <div class="card-header bg-primary text-white">
                     <h2 class="mb-0">할 일 상세 정보</h2>
-                    <span class="badge bg-light text-dark">
-                        {{#todo.completed}}완료됨{{/todo.completed}}
-                        {{^todo.completed}}진행 중{{/todo.completed}}
-                    </span>
                 </div>
                 <div class="card-body">
                     <h3 class="card-title mb-4">{{todo.title}}</h3>
@@ -29,16 +25,24 @@
                             <span>{{todo.description}}</span>
                         </li>
 
-                        {{#todo.dueDate}}
+                        <li class="list-group-item d-flex justify-content-between">
+                            <strong>진행 상태:</strong>
+                            <span class="badge {{#todo.completed}}bg-success{{/todo.completed}}{{^todo.completed}}bg-warning{{/todo.completed}}">
+                                {{#todo.completed}}완료됨{{/todo.completed}}
+                                {{^todo.completed}}진행 중{{/todo.completed}}
+                            </span>
+                        </li>
+
+                        {{#todo.formattedDueDate}}
                             <li class="list-group-item d-flex justify-content-between">
                                 <strong>마감일:</strong>
-                                <span>{{todo.dueDate}}</span>
+                                <span>{{todo.formattedDueDate}}</span>
                             </li>
-                        {{/todo.dueDate}}
+                        {{/todo.formattedDueDate}}
 
                         <li class="list-group-item d-flex justify-content-between">
                             <strong>생성일:</strong>
-                            <span>{{formattedCreatedAt}}</span>
+                            <span>{{todo.formattedCreatedAt}}</span>
                         </li>
                     </ul>
 

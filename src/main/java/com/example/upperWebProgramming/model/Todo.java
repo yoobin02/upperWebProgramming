@@ -8,7 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data                   // Getter, Setter, toString, equals, hashCode 자동 생성
 @NoArgsConstructor      // 기본 생성자
@@ -27,19 +27,19 @@ public class Todo {
 
     private String description;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dueDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime dueDate;
 
     private boolean completed;
 
     @CreationTimestamp
     @Column(updatable = false)
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @PrePersist
     public void onCreate() {
         if (createdAt == null) {
-            createdAt = LocalDate.now();
+            createdAt = LocalDateTime.now();
         }
     }
 
