@@ -1,4 +1,4 @@
-package com.example.upperWebProgramming.model;
+package com.example.upperWebProgramming.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,8 +41,4 @@ public class Todo {
             createdAt = LocalDateTime.now();
         }
     }
-
-//  public void updateTitle(Strig titleDto){
-//       this.tite = titleDto.title
-//  }
 }

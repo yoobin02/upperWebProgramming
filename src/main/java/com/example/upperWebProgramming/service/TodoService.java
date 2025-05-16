@@ -1,7 +1,7 @@
 package com.example.upperWebProgramming.service;
 
 import com.example.upperWebProgramming.dto.TodoDTO;
-import com.example.upperWebProgramming.model.Todo;
+import com.example.upperWebProgramming.entity.Todo;
 import com.example.upperWebProgramming.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

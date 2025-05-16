@@ -1,6 +1,6 @@
 package com.example.upperWebProgramming.dto;
 
-import com.example.upperWebProgramming.model.Todo;
+import com.example.upperWebProgramming.entity.Todo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

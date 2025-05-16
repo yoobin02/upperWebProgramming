@@ -1,6 +1,6 @@
 package com.example.upperWebProgramming.repository;
 
-import com.example.upperWebProgramming.model.Todo;
+import com.example.upperWebProgramming.entity.Todo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

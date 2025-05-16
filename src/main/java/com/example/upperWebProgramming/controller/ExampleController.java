@@ -1,6 +1,6 @@
 package com.example.upperWebProgramming.controller;
 
-import com.example.upperWebProgramming.model.Todo;
+import com.example.upperWebProgramming.entity.Todo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
