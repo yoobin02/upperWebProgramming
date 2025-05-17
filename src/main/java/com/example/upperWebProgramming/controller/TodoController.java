@@ -53,8 +53,6 @@ public class TodoController {
         todoDTO.setDueDate(now);
         todoDTO.setCreatedAt(now);
 
-//        model.addAttribute("todoDTO", todoDTO); 필요 없는 코드라 주석처리했는데, 확인하시고 지워주세요.
-//        model.addAttribute("time", localTime);
         model.addAttribute("currentDateTime", now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
 
         return "todo/create";
@@ -82,6 +80,7 @@ public class TodoController {
         model.addAttribute("todo", todoDTO);
         return "todo/detail";
     }
+
     //편집 폼
     @GetMapping("/todos/{id}/edit")
     public String todoEdit(@PathVariable("id") Long id, Model model){
