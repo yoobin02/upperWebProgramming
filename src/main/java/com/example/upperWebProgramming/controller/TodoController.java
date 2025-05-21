@@ -82,7 +82,7 @@ public class TodoController {
         model.addAttribute("todo", todoDTO);
         return "todo/detail";
     }
-    //편집 폼
+    //편집 폼입니다
     @GetMapping("/todos/{id}/edit")
     public String todoEdit(@PathVariable("id") Long id, Model model){
         TodoDTO todoDTO = todoService.findTodoById(id);
