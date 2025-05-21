@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class UpperWebProgrammingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(git add .UpperWebProgrammingApplication.class, args);
+		SpringApplication.run(UpperWebProgrammingApplication.class, args);
 	}
 }
