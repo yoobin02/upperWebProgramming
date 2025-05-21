@@ -38,28 +38,31 @@
                             <label for="dueDate" class="form-label">마감일</label>
                             <input type="datetime-local" class="form-control" id="dueDate" name="dueDate" value="{{todos.dueDate}}">
                         </div>
+
                         <div class="mb-3">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="completed" id="radioDefault1" value="true" {{#todos.completed}}checked{{/todos.completed}}>
                                 <label class="form-check-label" for="radioDefault1">
-                                    <span class="badge bg-success">
-                                        완료됨
-                                    </span>
+                                    <span class="badge bg-success">완료됨</span>
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="completed" id="radioDefault2" value="false" {{^todos.completed}}checked{{/todos.completed}}>
                                 <label class="form-check-label" for="radioDefault2">
-                                    <span class="badge bg-warning">
-                                        진행 중
-                                    </span>
+                                    <span class="badge bg-warning">진행 중</span>
                                 </label>
                             </div>
                         </div>
 
                         <div class="d-flex justify-content-between mt-4">
                             <a href="/todos/{{todos.id}}" class="btn btn-secondary">뒤로가기</a>
-                            <button type="submit" class="btn btn-primary">편집</button>
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="/todos/delete/{{todos.id}}"
+                                   class="btn btn-danger btn-sm"
+                                   style="width: 50px;"
+                                   onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+                                <button type="submit" class="btn btn-primary">편집</button>
+                            </div>
                         </div>
                     </form>
                 </div>

@@ -31,7 +31,6 @@
                                 <th>생성일</th>
                                 <th>마감일</th>
                                 <th>상태</th>
-                                <th>작업</th> <!-- 추가 -->
                             </tr>
                             </thead>
                             <tbody>
@@ -46,13 +45,6 @@
                                             {{#completed}}완료됨{{/completed}}
                                             {{^completed}}진행 중{{/completed}}
                                         </span>
-                                    </td>
-                                    <td>
-                                        <form action="/todos/{{id}}/delete" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash-alt"></i> 삭제
-                                            </button>
-                                        </form>
                                     </td>
                                 </tr>
                             {{/todos}}
