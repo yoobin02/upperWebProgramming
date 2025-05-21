@@ -37,4 +37,11 @@ public class TodoService {
                 .orElseThrow(() -> new NoSuchElementException("해당 ID의 할 일을 찾을 수 없습니다: " + id));
         return new TodoDTO(todo);
     }
+
+    // 주어진 ID를 가진 할 일(Todo)을 삭제합니다.
+    public void deleteTodo(Long id) {
+        todoRepository.deleteById(id);
+    }
+
+
 }

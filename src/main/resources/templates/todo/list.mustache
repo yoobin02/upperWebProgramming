@@ -31,20 +31,28 @@
                                 <th>생성일</th>
                                 <th>마감일</th>
                                 <th>상태</th>
+                                <th>작업</th> <!-- 추가 -->
                             </tr>
                             </thead>
                             <tbody>
                             {{#todos}}
-                                <tr class="todo-row" onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">
-                                    <td>{{title}}</td>
-                                    <td>{{description}}</td>
-                                    <td>{{formattedCreatedAt}}</td>
-                                    <td>{{formattedDueDate}}</td>
+                                <tr>
+                                    <td onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">{{title}}</td>
+                                    <td onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">{{description}}</td>
+                                    <td onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">{{formattedCreatedAt}}</td>
+                                    <td onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">{{formattedDueDate}}</td>
                                     <td>
                                         <span class="badge {{#completed}}bg-success{{/completed}}{{^completed}}bg-warning{{/completed}}">
                                             {{#completed}}완료됨{{/completed}}
                                             {{^completed}}진행 중{{/completed}}
                                         </span>
+                                    </td>
+                                    <td>
+                                        <form action="/todos/{{id}}/delete" method="post" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash-alt"></i> 삭제
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             {{/todos}}

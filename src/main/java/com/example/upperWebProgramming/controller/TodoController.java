@@ -97,4 +97,12 @@ public class TodoController {
 
         return "redirect:/todos/" + savedDTO.getId();
     }
+
+    // 삭제 처리
+    @PostMapping("/todos/{id}/delete")
+    public String deleteTodo(@PathVariable Long id) {
+        todoService.deleteTodo(id);
+        return "redirect:/todos";
+    }
+
 }
