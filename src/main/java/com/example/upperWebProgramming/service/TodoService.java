@@ -38,7 +38,7 @@ public class TodoService {
         return new TodoDTO(todo);
     }
 
-    // 주어진 ID를 가진 할 일(Todo)을 삭제합니다.
+    // 주어진 ID를 가진 할 일 삭제
     public void deleteTodo(Long id) {
         todoRepository.deleteById(id);
     }
