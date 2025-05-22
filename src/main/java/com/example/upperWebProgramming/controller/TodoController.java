@@ -30,10 +30,12 @@ public class TodoController {
     @GetMapping("/todos")
     public String getTodos(Model model) {
         List<TodoDTO> todos = todoService.findAllTodos();
+        int percent = todoService.todoPercent(todos);
         for (TodoDTO todo : todos) {
             todo.formatDates();
         }
         model.addAttribute("todos", todos);
+        model.addAttribute("percent", percent);
         return "todo/list";
     }
 

@@ -42,6 +42,15 @@ public class TodoService {
     public void deleteTodo(Long id) {
         todoRepository.deleteById(id);
     }
+    //전체 투두와 현재 투두 계산
+    public int todoPercent(List<TodoDTO> todos) {
+        if (todos.isEmpty()) return 0;
 
+        long completeTodo = todos.stream()
+                .filter(TodoDTO::isCompleted)
+                .count();
+
+        return (int) ((completeTodo / (float) todos.size()) * 100);
+    }
 
 }
