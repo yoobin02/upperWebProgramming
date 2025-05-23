@@ -24,7 +24,6 @@ body {
     padding: 0.5em 0.8em;
 }
 
-/* 완료된 할 일 스타일 */
 .completed-todo {
     color: #6c757d !important;
     background-color: #f8f9fa;
@@ -40,7 +39,10 @@ body {
     opacity: 0.7;
 }
 
-/* 만료된 할 일 스타일 (완료된 할 일과 동일하게 회색 처리) */
+.completed-todo td .badge {
+    opacity: 1 !important;
+}
+
 .expired-todo {
     color: #6c757d !important;
     background-color: #f8f9fa;
@@ -54,6 +56,10 @@ body {
     color: #6c757d !important;
     text-decoration: line-through;
     opacity: 0.7;
+}
+
+.expired-todo td .badge {
+    opacity: 1 !important;
 }
 
 /* 애니메이션 효과 */
