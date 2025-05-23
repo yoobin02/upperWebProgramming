@@ -8,7 +8,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <div class="container mt-5">
@@ -35,15 +35,14 @@
                             </thead>
                             <tbody>
                             {{#todos}}
-                                <tr class="todo-row" onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">
-                                    <td>{{title}}</td>
-                                    <td>{{description}}</td>
-                                    <td>{{formattedCreatedAt}}</td>
-                                    <td>{{formattedDueDate}}</td>
+                                <tr class="{{#completed}}completed-todo{{/completed}}{{#isExpired}}expired-todo{{/isExpired}}">
+                                    <td onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">{{title}}</td>
+                                    <td onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">{{description}}</td>
+                                    <td onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">{{formattedCreatedAt}}</td>
+                                    <td onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">{{formattedDueDate}}</td>
                                     <td>
-                                        <span class="badge {{#completed}}bg-success{{/completed}}{{^completed}}bg-warning{{/completed}}">
-                                            {{#completed}}완료됨{{/completed}}
-                                            {{^completed}}진행 중{{/completed}}
+                                        <span class="badge {{statusClass}}">
+                                            {{statusText}}
                                         </span>
                                     </td>
                                 </tr>
@@ -59,6 +58,14 @@
                             <a href="/todos/new" class="btn btn-primary mt-3">할 일 추가하기</a>
                         </div>
                     {{/todos}}
+                </div>
+                <div class="fw-semibold mb-2 text-center mb-2" style="color: #0d6efd;">할일 완성도:
+                    <span class="fw-semibold mb-2" style="color: #000000;">{{percent}}%</span>
+                </div>
+
+                <div class="progress" role="progressbar" aria-label="Basic example"
+                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: {{percent}}%"></div>
                 </div>
             </div>
         </div>
