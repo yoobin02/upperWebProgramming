@@ -6,9 +6,9 @@ import com.example.upperWebProgramming.repository.TodoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -16,12 +16,33 @@ public class TodoService {
 
     private final TodoRepository todoRepository;
 
-    // 모든 할 일 조회
+    // 모든 할 일 조회 (진행 중 -> 완료됨 -> 만료됨 순서 정렬)
     public List<TodoDTO> findAllTodos() {
-        return todoRepository.findAllByOrderByCreatedAtDesc()
-                .stream()
+        List<Todo> allTodos = todoRepository.findAllByOrderByCreatedAtDesc();
+        List<TodoDTO> allTodoDTOs = allTodos.stream()
                 .map(TodoDTO::new)
-                .collect(Collectors.toList());
+                .toList();
+
+        List<TodoDTO> inProgressTodos = new ArrayList<>();
+        List<TodoDTO> completedTodos = new ArrayList<>();
+        List<TodoDTO> expiredTodos = new ArrayList<>();
+
+        for (TodoDTO todo : allTodoDTOs) {
+            if (todo.isExpired()) {
+                expiredTodos.add(todo);
+            } else if (todo.isCompleted()) {
+                completedTodos.add(todo);
+            } else {
+                inProgressTodos.add(todo);
+            }
+        }
+
+        List<TodoDTO> sortedTodos = new ArrayList<>();
+        sortedTodos.addAll(inProgressTodos);
+        sortedTodos.addAll(completedTodos);
+        sortedTodos.addAll(expiredTodos);
+
+        return sortedTodos;
     }
 
     // 할 일 저장
@@ -38,19 +59,21 @@ public class TodoService {
         return new TodoDTO(todo);
     }
 
-    // 주어진 ID를 가진 할 일 삭제
+    // 주거 ID를 가진 할 일 삭제
     public void deleteTodo(Long id) {
         todoRepository.deleteById(id);
     }
-    //전체 투두와 현재 투두 계산
-    public int todoPercent(List<TodoDTO> todos) {
-        if (todos.isEmpty()) return 0;
 
+    // 전체 투두와 현재 투두 계산 (만료된 할 일도 전체에 포함하는데 완료된 것에 포함되지 않게 설정)
+    public int todoPercent(List<TodoDTO> todos) {
+        if (todos.isEmpty())
+            return 0;
+
+        int totalTodos = todos.size();
         long completeTodo = todos.stream()
-                .filter(TodoDTO::isCompleted)
+                .filter(todo -> todo.isCompleted() && !todo.isExpired())
                 .count();
 
-        return (int) ((completeTodo / (float) todos.size()) * 100);
+        return (int) ((completeTodo / (float) totalTodos) * 100);
     }
-
 }

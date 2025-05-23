@@ -8,7 +8,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <div class="container mt-5">
@@ -35,15 +35,14 @@
                             </thead>
                             <tbody>
                             {{#todos}}
-                                <tr>
+                                <tr class="{{#completed}}completed-todo{{/completed}}{{#isExpired}}expired-todo{{/isExpired}}">
                                     <td onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">{{title}}</td>
                                     <td onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">{{description}}</td>
                                     <td onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">{{formattedCreatedAt}}</td>
                                     <td onclick="location.href='/todos/{{id}}';" style="cursor: pointer;">{{formattedDueDate}}</td>
                                     <td>
-                                        <span class="badge {{#completed}}bg-success{{/completed}}{{^completed}}bg-warning{{/completed}}">
-                                            {{#completed}}완료됨{{/completed}}
-                                            {{^completed}}진행 중{{/completed}}
+                                        <span class="badge {{statusClass}}">
+                                            {{statusText}}
                                         </span>
                                     </td>
                                 </tr>
