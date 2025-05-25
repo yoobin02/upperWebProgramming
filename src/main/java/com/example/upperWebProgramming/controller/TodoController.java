@@ -86,4 +86,13 @@ public class TodoController {
         todoService.deleteTodo(id);
         return "redirect:/todos";
     }
+
+    // 선택된 할 일 삭제 (POST 방식)
+    @PostMapping("/todos/delete-selected")
+    public String deleteSelectedTodos(@RequestParam("todoIds") List<Long> todoIds) {
+        log.info("선택된 ID들 삭제 요청: {}", todoIds);
+        todoService.deleteTodosByIds(todoIds);
+        return "redirect:/todos";
+    }
+
 }

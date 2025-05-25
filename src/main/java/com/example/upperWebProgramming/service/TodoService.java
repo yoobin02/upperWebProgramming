@@ -76,4 +76,10 @@ public class TodoService {
 
         return (int) ((completeTodo / (float) totalTodos) * 100);
     }
+
+    // 여러 개의 할 일 삭제
+    public void deleteTodosByIds(List<Long> ids) {
+        todoRepository.deleteAllById(ids);
+    }
+
 }
